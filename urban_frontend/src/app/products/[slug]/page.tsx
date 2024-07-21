@@ -1,5 +1,4 @@
 import { createClient } from '@sanity/client';
-import createImageUrlBuilder from '@sanity/image-url';
 import groq from 'groq';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -23,7 +22,6 @@ const client = createClient({
     token: process.env.NEXT_SANITY_SECRET_TOKEN
 });
 
-const urlFor = (source: ProductProps) => createImageUrlBuilder(client).image(source).url();
 
 export async function generateStaticParams() {
     const products: ProductProps[] = await client.fetch(groq`*[_type == "product"]{ "slug": slug.current }`);

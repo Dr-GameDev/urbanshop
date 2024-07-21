@@ -11,7 +11,7 @@ const Navbar = () => {
     const [isMobileView, setIsMobileView] = useState(false);
     const toggleMenu = () => setIsMobileView(!isMobileView);
 
-    const { totalQuantity, totalPrice, setTotalQuantity, setTotalPrice, setQty, setCartItems } = useStateContext();
+    const { totalQuantity, totalPrice, setTotalQuantity, setTotalPrice, setCartItems } = useStateContext();
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     const handleCheckout = () => {

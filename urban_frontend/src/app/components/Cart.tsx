@@ -40,7 +40,7 @@ const Cart = () => {
                                     <AiOutlinePlus />
                                 </button>
                             </div>
-                            {/* @ts-ignore: Object is possibly 'undefined' */}
+                            {/* @ts-expect-error: Object is possibly 'undefined' */}
                             <div>R{cartItem.price * cartItem.quantity}</div>
                             <button
                                 type="button"

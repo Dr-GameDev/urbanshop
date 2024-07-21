@@ -2,12 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { ProductProps } from '../../../types/Products';
-import { getApparelProducts, getCampingProducts, getGadgetProducts } from '@/lib/client';
+import { getApparelProducts, getCampingProducts } from '@/lib/client';
 
 const Page = async () => {
     const apparels = await getApparelProducts();
     const camping = await getCampingProducts();
-    const gadgets = await getGadgetProducts();
+    // const gadgets = await getGadgetProducts();
 
     return (
         <section>
