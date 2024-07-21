@@ -1,0 +1,20 @@
+Product Categories
+
+Clothing:
+T-shirts
+Hoodies
+Jackets
+Pants
+Dresses
+Hats
+
+Camping:
+Watches
+Sunglasses
+Bags
+
+Gadgets:
+Headphones
+Smartwatches
+Phone cases
+Portable chargers
