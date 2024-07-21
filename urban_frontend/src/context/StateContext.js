@@ -11,30 +11,40 @@ export const StateContext = ({ children }) => {
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [qty, setQty] = useState(1);
 
+    // Load initial state from local storage
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            try {
+                const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+                const savedTotalPrice = JSON.parse(localStorage.getItem('totalPrice'));
+                const savedTotalQuantity = JSON.parse(localStorage.getItem('totalQuantity'));
 
+                if (savedCartItems) setCartItems(savedCartItems);
+                if (savedTotalPrice) setTotalPrice(savedTotalPrice);
+                if (savedTotalQuantity) setTotalQuantity(savedTotalQuantity);
+
+            } catch (error) {
+                console.error("Failed to load from localStorage", error);
+            }
+        }
+    }, []);
+
+    // Save state to local storage whenever it changes
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            try {
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+                localStorage.setItem('totalQuantity', JSON.stringify(totalQuantity));
+            } catch (error) {
+                console.error("Failed to save to localStorage", error);
+            }
+        }
+    }, [cartItems, totalPrice, totalQuantity]);
 
     const increaseQty = () => {
         setQty((prevQty) => prevQty + 1);
     };
-
-
-    // // Load initial state from local storage
-    // useEffect(() => {
-    //     const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
-    //     const savedTotalPrice = JSON.parse(localStorage.getItem('totalPrice'));
-    //     const savedTotalQuantity = JSON.parse(localStorage.getItem('totalQuantity'));
-
-    //     if (savedCartItems) setCartItems(savedCartItems);
-    //     if (savedTotalPrice) setTotalPrice(savedTotalPrice);
-    //     if (savedTotalQuantity) setTotalQuantity(savedTotalQuantity);
-    // }, []);
-
-    // // Save state to local storage whenever it changes
-    // useEffect(() => {
-    //     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    //     localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-    //     localStorage.setItem('totalQuantity', JSON.stringify(totalQuantity));
-    // }, [cartItems, totalPrice, totalQuantity]);
 
     const decreaseQty = () => {
         setQty((prevQty) => {
